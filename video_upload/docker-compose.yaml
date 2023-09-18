@@ -1,8 +1,41 @@
+# services:
+#   web:
+#     build: .
+#     command: python  manage.py runserver 0.0.0.0:8000
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - app_data:/app/data
+
+ 
+
+
+# volumes:
+#   app_data: 
+
+
+
+
+version: '3'
+
 services:
   web:
-    build: .
-    command: python  manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
+      
+    depends_on:
+      - db
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000" # Specify the runserver command
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Use a volume for database data
+volumes:
+  postgres_data:  # Define the volume for PostgreSQL data
