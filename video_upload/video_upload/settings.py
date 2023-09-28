@@ -26,8 +26,9 @@ SECRET_KEY = "django-insecure-d8#85g&f((o$f1dlacj*-!m1+6h(s9+nyd2-iecm)*ipkrk81=
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # Application definition
 
 INSTALLED_APPS = [
@@ -79,9 +80,9 @@ WSGI_APPLICATION = "video_upload.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',         # Replace with your database name
-        'USER': 'myuser',             # Replace with your database user
-        'PASSWORD': 'mypassword',     # Replace with your database password
+        'NAME': os.environ.get('DB_NAME'),         # Replace with your database name
+        'USER': os.environ.get('DB_USER'),             # Replace with your database user
+        'PASSWORD':os.environ.get('DB_PASSWORD'),     # Replace with your database password
         'HOST': 'db',                # This should match the name of the database service in your Docker Compose file
         'PORT': '5432',              # PostgreSQL default port
     }
@@ -128,11 +129,6 @@ STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-import os
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-MEDIA_URL = '/media/'
-
-# Path where media is stored'
-MEDIA_ROOT = BASE_DIR / 'media'

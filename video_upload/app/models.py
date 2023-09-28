@@ -33,7 +33,7 @@ class CustomUser(AbstractUser):
 class Video(models.Model):
     title = models.CharField(max_length=100)
     video_file = models.FileField(upload_to='videos/')
-    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,related_name="videos")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
