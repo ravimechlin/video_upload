@@ -26,8 +26,9 @@ SECRET_KEY = "django-insecure-d8#85g&f((o$f1dlacj*-!m1+6h(s9+nyd2-iecm)*ipkrk81=
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "import_export",
+    "app"
 ]
 
 MIDDLEWARE = [
@@ -74,11 +78,16 @@ WSGI_APPLICATION = "video_upload.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),         # Replace with your database name
+        'USER': os.environ.get('DB_USER'),             # Replace with your database user
+        'PASSWORD':os.environ.get('DB_PASSWORD'),     # Replace with your database password
+        'HOST': 'db',                # This should match the name of the database service in your Docker Compose file
+        'PORT': '5432',              # PostgreSQL default port
     }
 }
+
 
 
 # Password validation
@@ -110,6 +119,7 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+AUTH_USER_MODEL = 'app.CustomUser'
 
 
 # Static files (CSS, JavaScript, Images)
