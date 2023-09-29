@@ -1,7 +1,3 @@
-'Agenda of this project, this project will cover docker concept and Cloud computing concepts, also sso'
-'it is devolpment mode now'
+"In this project, we aim to delve into Docker concepts, Cloud computing concepts, and Single Sign-On (SSO). Presently, the project is in its development phase.
 
-1. come into the  video_upload directory
-2. run "docker-compose build" for the image build
-3. afer build run "docker-compose up"
-4. after the service run i.e webservices, postgress database  you can see the localserver is up
+To begin, please locate the 'video_upload' directory. Subsequently, perform 'docker-compose build' to construct the image. Once the image is successfully built, initiate 'docker-compose up'. After the services, encompassing web services and the PostgreSQL database, have started and are operational, you will be able to access the local server."
