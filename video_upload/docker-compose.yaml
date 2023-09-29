@@ -13,12 +13,9 @@ services:
       - my_network
     depends_on:
       - db
-    command: >
-      bash -c "
-      echo 'DB_NAME: $DB_NAME'
-      echo 'DB_USER: $DB_USER'
-      echo 'DB_PASSWORD: $DB_PASSWORD'
-      python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
+
+
   db:
     image: postgres:12
     environment:
@@ -35,4 +32,4 @@ volumes:
   postgres_data:  
 
 networks:
-  my_network:  
+  my_network:
