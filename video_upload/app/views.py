@@ -5,6 +5,7 @@ from . models import Video, CustomUser
 
 from . serializer import VideoSerializer
 from rest_framework.response import Response
+
 # Create your views here.
 
 class VideoViewset(ModelViewSet):

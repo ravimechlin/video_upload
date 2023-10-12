@@ -16,6 +16,7 @@ services:
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
 
 
+
   db:
     image: postgres:12
     environment:
