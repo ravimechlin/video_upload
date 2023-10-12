@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ../Dockerfile
+          file: ./video_upload/Dockerfile
           push: true
           tags: ravi0000/video_upload-web:fcd4f
 
