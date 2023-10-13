@@ -1,3 +1,4 @@
+
 name: ci
 
 on:
@@ -26,7 +27,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./video_upload/Dockerfile
+          file: ./Dockerfile
           push: true
-          tags: ravi0000/video_upload-web:fcd4f
-
+          tags: ravi0000/video_upload-web:latest
