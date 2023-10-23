@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    'celery',
     "import_export",
+    "rest_framework_tracking",
+    'django_celery_results',
+    'django_celery_beat',
     "app"
 ]
 
@@ -51,6 +55,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware'
+
 ]
 
 ROOT_URLCONF = "video_upload.urls"
@@ -66,6 +73,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                
             ],
         },
     },
@@ -83,13 +91,26 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME'),         # Replace with your database name
         'USER': os.environ.get('DB_USER',),             # Replace with your database user
         'PASSWORD':os.environ.get('DB_PASSWORD'),     # Replace with your database password
-        'HOST': 'db'  ,             # This should match the name of the database service in your Docker Compose file
-        'PORT': '5432',              # PostgreSQL default port
+        'HOST': 'db',             # This should match the name of the database service in your Docker Compose file
+        'PORT': '5432',        # PostgreSQL default port
     }
 }
 
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]
 
+# settings.py
 
+# Celery settings
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# # Celery configuration
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -135,3 +156,20 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored'
 MEDIA_ROOT = BASE_DIR / 'media'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_RESULT_EXTENDED = True
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+# SMTP configuration for sending emails
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587  # Change this to the appropriate port
+EMAIL_USE_TLS = True  # Use TLS for secure connection
+EMAIL_HOST_USER = 'ravikumar9780696@gmail.com'
+EMAIL_HOST_PASSWORD = 'dfjs jdtd szzu brwi'
+

@@ -5,10 +5,11 @@ from . models import Video, CustomUser
 
 from . serializer import VideoSerializer
 from rest_framework.response import Response
+from . mixins import *
 
 # Create your views here.
 
-class VideoViewset(ModelViewSet):
+class VideoViewset(BaseProjectViewset):
 
 
     queryset=Video.objects.all()

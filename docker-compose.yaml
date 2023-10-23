@@ -9,11 +9,38 @@ services:
       - "8002:8002"
     volumes:
       - app_data:/app/data  
-    networks:
-      - my_network
     depends_on:
       - db
+      - redis
+
+
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
+
+  redis:
+      image: redis
+   
+  
+  celery-worker:
+      build: 
+        context: .
+        dockerfile: Dockerfile
+      command : bash -c "celery -A video_upload  worker --pool=solo -l info"  
+      depends_on:
+          - db
+          - redis
+
+  celery-beat:
+        restart: always
+        build: 
+          context: .
+          dockerfile: Dockerfile
+        command : bash -c "celery -A  video_upload beat -l info "
+        ports: 
+        - "6379:6379"
+        depends_on:
+          - redis
+          - db
+
 
 
 
@@ -23,14 +50,14 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-    networks:
-      - my_network
     volumes:
       - postgres_data:/var/lib/postgresql/data 
+
+
+ 
+
 
 volumes:
   app_data: 
   postgres_data:  
 
-networks:
-  my_network:
