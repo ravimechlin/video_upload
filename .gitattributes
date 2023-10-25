@@ -1,1 +1,2 @@
+media/videos/screen-capture.webm filter=lfs diff=lfs merge=lfs -text
 *.webm filter=lfs diff=lfs merge=lfs -text
