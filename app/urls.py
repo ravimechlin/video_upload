@@ -25,4 +25,5 @@ router.register(r'video', VideoViewset)
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('email/',use_email,name="email")
 ]
