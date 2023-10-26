@@ -18,6 +18,7 @@ class VideoViewset(BaseProjectViewset):
 
 
 def use_email(requst):
+    print("hello")
     send_email_to_everyone.delay()
     return HttpResponse("email is done")
 
