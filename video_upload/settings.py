@@ -173,3 +173,4 @@ EMAIL_USE_TLS = True  # Use TLS for secure connection
 EMAIL_HOST_USER = 'ravikumar9780696@gmail.com'
 EMAIL_HOST_PASSWORD = 'dfjs jdtd szzu brwi'
 
+

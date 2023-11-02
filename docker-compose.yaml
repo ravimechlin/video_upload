@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8002:8002"
+      - "80:8000"
     volumes:
       - app_data:/app/data  
     depends_on:
@@ -14,7 +14,7 @@ services:
       - redis
 
 
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
   redis:
       image: redis

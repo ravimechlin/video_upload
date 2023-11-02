@@ -1,1 +1,2 @@
-video_upload/.env
+video_upload/.env,
+*.pyc
