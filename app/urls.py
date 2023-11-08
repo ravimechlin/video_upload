@@ -22,6 +22,7 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'video', VideoViewset)
+router.register(r'todo', TodoItemViewset)
 
 urlpatterns = [
     path('api/', include(router.urls)),

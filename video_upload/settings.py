@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    'celery',
+    "celery",
     "import_export",
     "rest_framework_tracking",
-    'django_celery_results',
-    'django_celery_beat',
+    "django_celery_results",
+    "django_celery_beat",
+    "corsheaders",
     "app"
 ]
 
@@ -60,6 +61,10 @@ MIDDLEWARE = [
 
 ]
 
+
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]
 ROOT_URLCONF = "video_upload.urls"
 
 TEMPLATES = [
@@ -91,7 +96,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME'),         # Replace with your database name
         'USER': os.environ.get('DB_USER',),             # Replace with your database user
         'PASSWORD':os.environ.get('DB_PASSWORD'),     # Replace with your database password
-        'HOST': 'db',             # This should match the name of the database service in your Docker Compose file
+        'HOST': os.environ.get('DB_HOST','localhost'),             # This should match the name of the database service in your Docker Compose file
         'PORT': '5432',        # PostgreSQL default port
     }
 }

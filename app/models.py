@@ -38,3 +38,10 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class TodoItem(models.Model):
+    name=models.CharField(max_length=100)
+    description=models.TextField()
+    status=models.BooleanField(default=False)
