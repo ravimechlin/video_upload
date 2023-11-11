@@ -26,5 +26,5 @@ router.register(r'todo', TodoItemViewset)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('email/',use_email,name="email")
+    # path('email/',use_email,name="email")
 ]
