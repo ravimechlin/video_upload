@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME'),         # Replace with your database name
         'USER': os.environ.get('DB_USER',),             # Replace with your database user
         'PASSWORD':os.environ.get('DB_PASSWORD'),     # Replace with your database password
-        'HOST': os.environ.get('DB_HOST','localhost'),             # This should match the name of the database service in your Docker Compose file
+        'HOST': 'db',             # This should match the name of the database service in your Docker Compose file
         'PORT': '5432',        # PostgreSQL default port
     }
 }
