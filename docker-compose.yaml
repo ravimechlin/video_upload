@@ -11,13 +11,13 @@ services:
       - app_data:/app/data  
     depends_on:
       - db
-      - redis
+      # - redis
 
 
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
-  redis:
-      image: redis
+  # redis:
+  #     image: redis
    
   
   celery-worker:
@@ -27,19 +27,19 @@ services:
       command : bash -c "celery -A video_upload  worker --pool=solo -l info"  
       depends_on:
           - db
-          - redis
+          # - redis
 
-  celery-beat:
-        restart: always
-        build: 
-          context: .
-          dockerfile: Dockerfile
-        command : bash -c "celery -A  video_upload beat -l info "
-        ports: 
-        - "6379:6379"
-        depends_on:
-          - redis
-          - db
+  # celery-beat:
+  #       restart: always
+  #       build: 
+  #         context: .
+  #         dockerfile: Dockerfile
+  #       command : bash -c "celery -A  video_upload beat -l info "
+  #       ports: 
+  #       - "6379:6379"
+  #       depends_on:
+  #         - redis
+  #         - db
 
 
 
