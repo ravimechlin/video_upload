@@ -9,7 +9,7 @@ if errorlevel 1 (
     rem Log in to Docker Hub
     docker login -u ravi0000 -p Ravi#9780
     if errorlevel 1 (
-        echo Failed to log in to Docker Hub
+        echo Failed to log in  j to Docker Hub
         exit /b 1
     ) else (
         echo Successfully logged in to Docker Hub
